@@ -42,10 +42,10 @@ namespace advancerDrive {
     /**
      * Setze die Leistung für einen Elektromotor.
      * Wenn der Index nicht zwischen 1 und 2 liegt wird kein Wert gesetzt und ein Ton ausgegeben.
-     * @param index des Elektromagneten
-     * @param leistung die der Elektromagnet abgeben soll
+     * @param index des Elektromotors
+     * @param leistung die der Elektromotors abgeben soll
      */
-    //% block="Setze Leistung für Elektromagnet $index auf $leistung"
+    //% block="Setze Leistung für Elektromotor $index auf $leistung"
     //% leistung.min=-100 leistung.max=100
     //% index.min=1 index.max=2
     //% leistung.defl=0
