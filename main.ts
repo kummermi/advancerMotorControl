@@ -5,7 +5,7 @@ I^2C Motorc Drivers
 namespace advancerDrive {
     let MotorSpeedSet = 0x82
     let PWMFrequenceSet = 0x84
-    let DirectionSet = 0xaa
+    let MotorDirectionSet = 0xaa
     let MotorSetA = 0xa1
     let MotorSetB = 0xa5
     let Nothing = 0x01
@@ -16,11 +16,18 @@ namespace advancerDrive {
     let BothAntiClockWise = 0x05
     let M1CWM2ACW = 0x06
     let M1ACWM2CW = 0x09
-    let I2CMotorDriverAdd = 0x0d
+    let I2CMotorDriverAdd = 0x0F
     let electricMotorDirection = [0, 0]
     let electricMotorOutput = [0, 0]
-    let DriverAddress = 0x0A
+    let DriverAddress = 0x0F
+    let SpeedMax = 100
 
+/** 
+ *  Maps a value from one range to another
+ */
+    function mapValue(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number): number {
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+    }
 
     function resetI2CDevices(){
         let reset_pin = DigitalPin.P1;
@@ -28,6 +35,41 @@ namespace advancerDrive {
         basic.pause(50);
         pins.digitalWritePin(reset_pin, 0);
         basic.pause(250);
+    }
+
+/**
+ * Sets the speed of the motors
+ */
+ //block="Setze die Geschwindigkeit für beide Motoren"  
+    export function setSpeed(speed1: number, speed2: number): void {
+        let s1 = mapValue(speed1, 0, 100, 0, 255);
+        let s2 = mapValue(speed2, 0, 100, 0, 255);
+        let buf = pins.createBuffer(3);
+        buf[0] = MotorSpeedSet;
+        buf[1] = s1;
+        buf[2] = s2;
+        pins.i2cWriteBuffer(I2CMotorDriverAdd, buf);
+        basic.pause(20);
+    }
+
+/**
+ * Sets the direction of the motors
+ * @param clockwise1 Richtung Motor 1
+ * @param clockwise2 Richtung Motor 2
+ */
+ //block="Setze die Richtung für beide Motoren" 
+ //% clockwise: true
+ //% couterclockwise: false
+    export function setDirection(clockwise1: boolean, clockwise2: boolean): void {
+        let dir1 = clockwise1 ? 0b10 : 0b01;
+        let dir2 = clockwise2 ? 0b10 : 0b01;
+        let dir = (dir2 << 2) | dir1;
+        let buf = pins.createBuffer(3);
+        buf[0] = MotorDirectionSet;
+        buf[1] = dir;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(I2CMotorDriverAdd, buf);
+        basic.pause(20);
     }
 
     /**
