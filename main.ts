@@ -19,7 +19,7 @@ namespace advancerDrive {
     let I2CMotorDriverAdd = 0x0F
     let electricMotorDirection = [0, 0]
     let electricMotorOutput = [0, 0]
-    let DriverAddress = 0x0F
+    let DriverAddress = 0x0A
     let SpeedMax = 100
 
 
