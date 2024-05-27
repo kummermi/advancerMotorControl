@@ -22,6 +22,12 @@ namespace advancerDrive {
     let DriverAddress = 0x0A
 
 
+    // Maps a value from one range to another
+    function mapValue(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number): number {
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+    }
+
+
     function resetI2CDevices(){
         let reset_pin = DigitalPin.P1;
         pins.digitalWritePin(reset_pin, 1);
