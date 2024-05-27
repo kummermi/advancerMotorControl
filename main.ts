@@ -37,40 +37,7 @@ namespace advancerDrive {
         basic.pause(250);
     }
 
-/**
- * Sets the speed of the motors
- */
- //block="Setze die Geschwindigkeit für beide Motoren"  
-    export function setSpeed(speed1: number, speed2: number): void {
-        let s1 = mapValue(speed1, 0, 100, 0, 255);
-        let s2 = mapValue(speed2, 0, 100, 0, 255);
-        let buf = pins.createBuffer(3);
-        buf[0] = MotorSpeedSet;
-        buf[1] = s1;
-        buf[2] = s2;
-        pins.i2cWriteBuffer(I2CMotorDriverAdd, buf);
-        basic.pause(20);
-    }
 
-/**
- * Sets the direction of the motors
- * @param clockwise1 Richtung Motor 1
- * @param clockwise2 Richtung Motor 2
- */
- //block="Setze die Richtung für beide Motoren" 
- //% clockwise: true
- //% couterclockwise: false
-    export function setDirection(clockwise1: boolean, clockwise2: boolean): void {
-        let dir1 = clockwise1 ? 0b10 : 0b01;
-        let dir2 = clockwise2 ? 0b10 : 0b01;
-        let dir = (dir2 << 2) | dir1;
-        let buf = pins.createBuffer(3);
-        buf[0] = MotorDirectionSet;
-        buf[1] = dir;
-        buf[2] = 0;
-        pins.i2cWriteBuffer(I2CMotorDriverAdd, buf);
-        basic.pause(20);
-    }
 
     /**
      * Setze Leistung für beide Elektromotoren auf 0
