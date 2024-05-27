@@ -22,11 +22,11 @@ namespace advancerDrive {
     let DriverAddress = 0x0F
     let SpeedMax = 100
 
-/** 
- *  Maps a value from one range to another
- */
-    function mapValue(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number): number {
-        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+
+    //Maps a value from one range to another
+ 
+    function mapValue(value?: number, fromLow?: number, fromHigh?: number, toLow?: number, toHigh?: number) number {
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;''
     }
 
     function resetI2CDevices(){
