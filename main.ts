@@ -37,6 +37,27 @@ namespace advancerDrive {
     }
 
     /**
+     * Sets the speed of the motors
+     * @param speed1
+     * @param speed2
+     */
+    //block="Setze die Geschwindigkeit für Motor 1 $speed1 und Motor 2 $speed2"
+    //% speed1.min=-100 speed1.max=100
+    //% speed2.min=-100 speed2.max=100
+    //% speed1.defl=0
+    //% speed2.defl=0
+    export function setSpeed(speed1: number, speed2: number) {
+        let s1 = mapValue(speed1, 0, 100, 0, 255);
+        let s2 = mapValue(speed2, 0, 100, 0, 255);
+        let buf = pins.createBuffer(3);
+        buf[0] = MotorSpeedSet;
+        buf[1] = s1;
+        buf[2] = s2;
+        pins.i2cWriteBuffer(DriverAddress, buf);
+        basic.pause(20);
+    }
+
+    /**
      * Setze Leistung für beide Elektromotoren auf 0
      */
     //% block="Setze Leistung für alle Elektromotoren auf 0"
