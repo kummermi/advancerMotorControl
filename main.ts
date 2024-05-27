@@ -16,16 +16,11 @@ namespace advancerDrive {
     let BothAntiClockWise = 0x05
     let M1CWM2ACW = 0x06
     let M1ACWM2CW = 0x09
-    let I2CMotorDriverAdd = 0x0f
+    let I2CMotorDriverAdd = 0x0d
     let electricMotorDirection = [0, 0]
     let electricMotorOutput = [0, 0]
     let DriverAddress = 0x0A
-    let SpeedMax = 100
 
- // Maps a value from one range to another
-    function mapValue(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number): number {
-        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
-    }
 
     function resetI2CDevices(){
         let reset_pin = DigitalPin.P1;
@@ -34,8 +29,6 @@ namespace advancerDrive {
         pins.digitalWritePin(reset_pin, 0);
         basic.pause(250);
     }
-
-
 
     /**
      * Setze Leistung für beide Elektromotoren auf 0
