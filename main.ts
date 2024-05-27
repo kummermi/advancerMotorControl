@@ -41,7 +41,7 @@ namespace advancerDrive {
      * @param speed1
      * @param speed2
      */
-    //block="Setze die Geschwindigkeit für Motor 1 $speed1 und Motor 2 $speed2"
+    //% block="Setze die Geschwindigkeit für Motor 1 $speed1 und Motor 2 $speed2"
     //% speed1.min=-100 speed1.max=100
     //% speed2.min=-100 speed2.max=100
     //% speed1.defl=0
