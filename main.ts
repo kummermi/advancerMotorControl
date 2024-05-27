@@ -5,7 +5,7 @@ I^2C Motorc Drivers
 namespace advancerDrive {
     let MotorSpeedSet = 0x82
     let PWMFrequenceSet = 0x84
-    let MotorDirectionSet = 0xaa
+    let DirectionSet = 0xaa
     let MotorSetA = 0xa1
     let MotorSetB = 0xa5
     let Nothing = 0x01
@@ -16,7 +16,7 @@ namespace advancerDrive {
     let BothAntiClockWise = 0x05
     let M1CWM2ACW = 0x06
     let M1ACWM2CW = 0x09
-    let I2CMotorDriverAdd = 0x0F
+    let I2CMotorDriverAdd = 0x0f
     let electricMotorDirection = [0, 0]
     let electricMotorOutput = [0, 0]
     let DriverAddress = 0x0A
@@ -25,7 +25,7 @@ namespace advancerDrive {
 
     //Maps a value from one range to another
  
-    function mapValue(value?: number, fromLow?: number, fromHigh?: number, toLow?: number, toHigh?: number) number {
+    function mapValue(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number) number {
         return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;''
     }
 
